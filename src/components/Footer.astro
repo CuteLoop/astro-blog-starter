@@ -1,0 +1,38 @@
+---
+import Social from "./Social.astro";
+
+const profiles = [
+  { platform: "GitHub", username: "cuteloop" },
+  { platform: "LinkedIn", username: "joel-maldonado-9ab79a15b" },
+];
+---
+
+<footer>
+  <p>Curious? Here’s where I share code, writing, and works-in-progress:</p>
+
+  <ul>
+    {profiles.map(({ platform, username }) => (
+      <li><Social platform={platform} username={username} /></li>
+    ))}
+  </ul>
+
+  <p>© {new Date().getFullYear()} Joel</p>
+</footer>
+
+<style>
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #1f2937;
+    color: #9ca3af;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 1.25rem;
+  }
+</style>
