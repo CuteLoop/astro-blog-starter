@@ -1,22 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = "Blog Page";
+const pageTitle = "Blog";
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-  <h1>My Astro Site</h1>
-		<h1>My Astro Learning Blog</h1>
-		<p>This is where I will post about my journey learning Astro.</p>
-		<h2>Blog Posts</h2>
-		<ul>
-		<li><a href="/posts/post-1/">Post 1</a></li>
-		<li><a href="/posts/post-2/">Post 2</a></li>
-		<li><a href="/posts/post-3/">Post 3</a></li>
-		</ul>
+<BaseLayout
+  pageTitle={pageTitle}
+  description="Posts about building my Astro blog and learning frontend development."
+>
+  <p>This is where I will post about my journey learning Astro.</p>
+
+  <h2>Blog Posts</h2>
+  <ul>
+    <li><a href="/posts/post-1/">Post 1</a></li>
+    <li><a href="/posts/post-2/">Post 2</a></li>
+    <li><a href="/posts/post-3/">Post 3</a></li>
+  </ul>
 </BaseLayout>
-
-
-
-
-
-

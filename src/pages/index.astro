@@ -1,7 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = "Home Page";
+
+const pageTitle = "Home";
 ---
-<BaseLayout pageTitle={pageTitle}>
+
+<BaseLayout pageTitle={pageTitle} description="Personal site for applied math, software, and writing.">
   <h2>My awesome blog subtitle</h2>
+
+  <p>
+    I build software, study applied mathematics, and write about the tools and ideas
+    that help me think clearly.
+  </p>
 </BaseLayout>
