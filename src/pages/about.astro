@@ -1,90 +1,25 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-
-const pageTitle = "About Me";
-
-const identity = {
-  firstName: "Joel",
-  country: "Mexico / United States",
-  occupation: "applied math PhD student who builds software and teaches",
-  hobbies: [
-    "dancing salsa and cumbia",
-    "solving math problems",
-    "building side projects",
-    "writing and explaining ideas",
-  ],
-};
-
-const skills = [
-  "Python",
-  "JavaScript",
-  "Astro",
-  "Django",
-  "MATLAB",
-  "Numerical Analysis",
-  "PDEs",
-  "Optimization",
-  "Scientific Computing",
-  "Technical Writing",
-];
-
-const happy = true;
-const finished = false;
-const goal = 3;
-
-const skillColor = "crimson";
-const fontWeight = "bold";
-const textCase = "uppercase";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<style define:vars={{ skillColor, fontWeight, textCase }}>
-  /* This styles the layout's <h1> on this page */
-  h1 {
-    font-size: 4rem;
-    color: purple;
-  }
-
-  .skill {
-    color: var(--skillColor);
-    font-weight: var(--fontWeight);
-    text-transform: var(--textCase);
-  }
-</style>
-
-<BaseLayout pageTitle={pageTitle} description="Who I am and what I work on.">
-  <h2>... and my new Astro site!</h2>
-
-  <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
-  <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
-
-  <p>Here are a few facts about me:</p>
-
-  <ul>
-    <li>My name is {identity.firstName}.</li>
-    <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
-
-    {identity.hobbies.length >= 2 && (
-      <li>
-        Two of my hobbies are {identity.hobbies[0]} and {identity.hobbies[1]}.
-      </li>
-    )}
-  </ul>
-
+<BaseLayout
+  pageTitle="About"
+  description="About this site and its author."
+>
   <p>
-    I like working on problems that sit somewhere between math, code, and real
-    life. Sometimes that looks like research, sometimes teaching, and sometimes
-    it’s just experimenting with ideas to see what breaks (and why).
+    This is a minimal Astro blog starter. Use this page for a short bio, project links,
+    and what readers can expect from your writing.
   </p>
 
-  <p>My skills are:</p>
-
+  <h2>What I write about</h2>
   <ul>
-    {skills.map((skill) => (
-      <li class="skill">{skill}</li>
-    ))}
+    <li>Engineering notes and build logs</li>
+    <li>Applied math and scientific computing</li>
+    <li>Tools, workflows, and experiments</li>
   </ul>
 
-  {happy && <p>I am happy to be learning Astro!</p>}
-  {finished && <p>I finished this tutorial!</p>}
-  {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+  <h2>Contact</h2>
+  <p class="meta">
+    Add contact links in the footer (GitHub, LinkedIn) or create a dedicated contact page.
+  </p>
 </BaseLayout>

@@ -1,300 +1,246 @@
-Below is a **clean, formalized design/style document** you can place directly in your repository under `docs/`. It is written to be both **human-readable** and **actionable**, the kind of document you would keep long-term and evolve slowly.
-
-I recommend the filename:
-
-```
-docs/design-system.md
-```
-
-(or `docs/style-guide.md` if you prefer)
+# Design System — Cosmic Paper / Spaceship Window
+**Project:** Astro Blog Starter  
+**Purpose:** A minimal, highly readable blog framed as “looking out a spaceship window” into dessert-cosmic worlds.  
+**Status:** Living document (update as the theme evolves).
 
 ---
 
-````md
-# Design System — Cosmic Paper Theme
+## 1) Brand Concept
+### Core metaphor
+- Each page feels like **you’re inside a spaceship**, looking out a **window**.
+- The **content** is a calm “paper/clipboard” panel (minimal, readable).
+- The **background** is a cinematic “world” (cosmic dessert palettes, nebula glaze, sprinkle stars).
+- Subtle **glass glare** adds the window feeling.
+- Optional **marker notes** appear as small tags/labels (like writing on the glass).
 
-## Purpose
-
-This document defines the visual and stylistic system for the site.
-It exists to ensure consistency, readability, and long-term maintainability
-as the site grows in content and complexity.
-
-The goal is **simple, minimal, paper-first design** set against a
-**cosmic background**, with color used sparingly and intentionally.
-
-This is not a decorative theme.  
-It is a reading and thinking environment.
-
----
-
-## Design Philosophy
-
-**Concept:**  
-> *A clean paper notebook floating in deep space.*
-
-The site balances two contrasting ideas:
-
-1. **Paper**
-   - Calm, readable, minimal
-   - Optimized for long-form text
-   - Feels like notes, essays, or a research notebook
-
-2. **Cosmos**
-   - Deep, dark background
-   - Quiet and expansive
-   - Color appears like distant stars, not noise
-
-The background sets the mood.  
-The content does the talking.
+### Design goals
+- **Readable first:** posts must be comfortable to read for long sessions.
+- **Minimal UI:** avoid heavy decoration on the content panel.
+- **Distinct worlds:** each page can opt into a themed window view.
+- **Small but joyful accents:** sprinkle colors used sparingly for highlights and “stars.”
 
 ---
 
-## Core Principles
+## 2) Layout Guidelines (Standards we follow)
+### 2.1 Reading measure (text width)
+- Comfortable line length: **60–80 characters/line**
+- Recommended blog body width: **~72–78ch**
+- We default posts to **reading width** to preserve readability.
 
-### 1. Paper-first readability
-- Text is always high-contrast.
-- Long-form reading is comfortable.
-- Light surfaces are used for content blocks.
+**Decision:**  
+- **Posts + About:** `max-width: 76ch` (reading container)  
+- **Home + Blog index:** wider container to “use space” and feel more cinematic.
 
-### 2. Color as punctuation
-- Color is never decorative filler.
-- Color highlights meaning:
-  - links
-  - emphasis
-  - metadata
-  - subtle UI affordances
-- Use color sparingly.
+### 2.2 Mobile gutters (show background rim)
+- Typical mobile padding is 16px; we want the “window” to peek through.
+- Keep a **thin rim** of background visible around the paper panel.
 
-### 3. Minimal geometry
-- Rectangles with soft rounding.
-- Borders instead of shadows.
-- Avoid visual clutter.
+**Decision:**  
+- Mobile outer gutter: **12px** (`0.75rem`)  
+- Desktop outer gutter: **24–32px** (`1.5–2rem`)  
+- Paper panel padding stays comfortable even as gutters shrink.
 
-### 4. Space equals calm
-- Generous margins.
-- Comfortable line height.
-- Nothing feels cramped or loud.
+### 2.3 Desktop: avoid “too narrow” feeling
+On large screens, a narrow column can feel like “2 of 4 columns used.”  
+We handle this by varying layout per page type:
 
----
-
-## Visual Layers
-
-The site is designed in layers:
-
-1. **Cosmic Background**
-   - Dark, deep blue
-   - Sets atmosphere
-
-2. **Paper Surface**
-   - Light container for content
-   - Houses text, posts, and notes
-
-3. **Ink**
-   - Primary text and headings
-
-4. **Sprinkles**
-   - Rare accent colors
-   - Used intentionally
+**Decision:**  
+- Home + Blog index are **wider layouts** (hero + cards/list)  
+- Post pages remain **reading layout** (best for long-form content)  
+- Sidebars are **optional later** (TOC for posts), not assumed now.
 
 ---
 
-## Color System
+## 3) Standard Page Layouts
+### 3.1 Home (Wide)
+**Goal:** cinematic intro + quick entry points
+- Use **wide paper panel** for hero / intro.
+- Follow with a **responsive grid** for sections:
+  - Latest posts
+  - Projects / notes
+  - “Now” / about snippet
 
-### Base (Cosmic Background)
+**Structure**
+- Header (aligned)
+- Hero panel (wide + paper)
+- Section grid (wide)
+- Footer
 
-```css
---bg-space: #0b1020;
---bg-space-soft: #0f172a;
-````
+### 3.2 About (Reading)
+**Goal:** narrative + credibility, calm and personal
+- Use **reading-width** paper panel.
+- Optional: small “facts” or “toolkit” cards inside.
 
-### Paper Surface
+**Structure**
+- Header
+- Paper panel (reading width)
+- Sections: Story, Work, Interests, Links
 
-```css
---paper: #f8fafc;
---paper-border: #e5e7eb;
-```
+### 3.3 Blog index (All posts) (Wide)
+**Goal:** scannable list / grid
+- Use **wide** paper panel.
+- Posts appear as:
+  - clean list (title + date + description), or
+  - cards in 2 columns (desktop), 1 column (mobile)
 
-### Ink (Text)
+**Structure**
+- Header
+- Intro line (short)
+- Posts list/grid
+- Footer
 
-```css
---ink-main: #0f172a;
---ink-muted: #475569;
-```
+### 3.4 Blog post (Single post) (Reading)
+**Goal:** maximum readability
+- Use **reading-width** paper panel.
+- Add a “post header” region:
+  - Title
+  - Date
+  - Description (optional)
+  - Author (optional)
+  - Hero image (optional)
 
-### Sprinkles (Accent Colors)
-
-```css
---sprinkle-pink:   #f472b6;
---sprinkle-green:  #4ade80;
---sprinkle-yellow: #facc15;
---sprinkle-blue:   #60a5fa;
---sprinkle-red:    #f87171;
-```
-
-**Rule:**
-
-> Never use more than one sprinkle color per component.
-
----
-
-## Typography
-
-### Philosophy
-
-* Neutral and unobtrusive
-* Designed for reading, not branding
-* Notes > posters
-
-### Defaults
-
-* System UI font stack
-* One font family
-* No decorative headings
-
-```css
-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-```
+**Structure**
+- Header
+- Post header block (reading width)
+- Prose content (reading width)
+- Next/Previous (optional)
+- Footer
 
 ---
 
-## Layout Structure
+## 4) Containers & Spacing Tokens
+### Container sizes
+- **Reading container:** `--container-max: 76ch`
+- **Wide container:** `--container-wide: 72rem` (~1152px)
 
-Conceptual structure:
+### Gutters
+- **Mobile page gutter:** `0.75rem` (background rim visible)
+- **Desktop gutter:** `1.5–2rem`
 
-```
-[ Cosmic Background ]
-    └── Header (quiet, dark)
-    └── Paper Container (centered)
-         ├── Title
-         ├── Metadata
-         ├── Content
-    └── Footer (subtle)
-```
-
-The **paper container** is the primary visual focus.
+### Panel
+- Border radius: ~ **14–18px**
+- Backdrop blur: subtle (window feel)
+- Shadow: soft, deep (floating clipboard)
 
 ---
 
-## Containers
+## 5) Color & Worlds (The Window Views)
+### Base environment (global)
+- Deep space background gradients
+- Sprinkle “stars” layer
+- Glass glare overlay
 
-### Content Container
+### Sprinkle palette (accents only)
+- Pink: `#f472b6`
+- Green: `#4ade80`
+- Yellow: `#facc15`
+- Blue: `#60a5fa`
+- Red: `#f87171`
 
-* Centered
-* Light background
-* Soft border
-* Rounded corners
+### Worlds (page themes via `data-theme`)
+Pages set `<html data-theme="...">` to swap background mood.
 
-Guidelines:
+#### 5.1 `sprinkle-brownie`
+Chocolate-ish darkness, candy sprinkles pop.
+- `--space-a: #120b10`
+- `--space-b: #1a1016`
+- `--space-c: #081028`
 
-* Max width: ~70–75ch
-* Padding: generous
-* Margin: separates content from background
+Use for: playful “chocolate lab notebook” vibe.
 
----
+#### 5.2 `sprinkle-field`
+Dense sprinkle energy, still cosmic, still calm.
+- `--space-a: #06111d`
+- `--space-b: #081a2a`
+- `--space-c: #0b1020`
 
-## Headings
+Use for: high-energy sections (home or index).
 
-* Calm hierarchy
-* No excessive size jumps
-* Slight negative letter-spacing for clarity
+#### 5.3 `galaxy-donut`
+Purple-blue glaze nebula.
+- `--space-a: #0b0820`
+- `--space-b: #120a2a`
+- `--space-c: #061a33`
 
----
+Use for: blog posts, “cosmic glaze” feel.
 
-## Links
+#### 5.4 `blueberry-nebula`
+Deep blue/purple with fruit red accents.
+- `--space-a: #07081a`
+- `--space-b: #0b0f2a`
+- `--space-c: #121a3a`
 
-Links are one of the primary “sprinkles”.
+Use for: about page, reflective content.
 
-* Default: blue
-* Hover: pink
-* Always readable
-* Always intentional
+#### 5.5 `starry-night`
+Swirly blue emphasis, classic night mood.
+- `--space-a: #050a18`
+- `--space-b: #061a34`
+- `--space-c: #0a2a5a`
 
----
-
-## Code Blocks
-
-* Subtle contrast
-* No rainbow syntax highlighting
-* Reads like annotations, not fireworks
-
----
-
-## Sprinkles Usage Guide
-
-Sprinkles appear in small doses:
-
-* Links
-* Icons
-* Section markers
-* Callouts
-
-### Example: Callout
-
-```css
-.note {
-  border-left: 4px solid var(--sprinkle-green);
-  padding-left: 1rem;
-}
-```
+Use for: long reading sessions, calmer mood.
 
 ---
 
-## What We Avoid (Non-goals)
+## 6) Typography
+- System UI stack by default (fast, clean).
+- H1: bold, slightly tight tracking, simple.
+- Body: comfortable line-height (~1.65).
 
-* ❌ Starfield background images
-* ❌ Animated particles
-* ❌ Heavy gradients
-* ❌ Excessive shadows
-* ❌ Multiple fonts
-* ❌ Color-heavy sections
-* ❌ Decorative noise
-
-The site should feel **quiet**, not impressive.
+**Decision:**
+- Keep typography minimal; let background be expressive.
 
 ---
 
-## Intended Emotional Tone
+## 7) UI Components
+### 7.1 Header / Nav
+- Align header content with page containers.
+- Mobile: menu button toggles nav list.
+- Desktop: nav always visible.
 
-* Thoughtful
-* Calm
-* Curious
-* Slightly playful
-* Academically grounded
+**Interaction rule:**
+- On mobile click:
+  - `aria-expanded` toggles
+  - `.site-header` toggles `.menu-open`
+  - nav links reveal beneath header row
 
-Color is used as delight, not distraction.
+### 7.2 Footer
+- Low contrast, quiet.
+- Social buttons are minimal chips.
+- Footer aligns with page container.
 
----
-
-## Evolution Guidelines
-
-* Change styles slowly.
-* Prefer refinement over redesign.
-* Add components only when the content demands them.
-* Keep the reading experience sacred.
-
----
-
-## Status
-
-This design system is:
-
-* **Stable**
-* **Minimal**
-* **Open to slow evolution**
-
-All future UI decisions should reference this document.
-
-```
+### 7.3 “Marker on glass” tags
+Used sparingly above headings for flavor:
+- `.window-tag` (yellow highlight)
+- `.window-tag.terminal` (green highlight)
 
 ---
 
-### Next natural step
-Once this doc is committed, the **next correct move** is to:
+## 8) Accessibility Rules
+- Maintain adequate contrast on the paper panel.
+- Nav button uses `aria-expanded` and `aria-controls`.
+- Links are clearly distinguishable (underline + hover color).
+- Icons are decorative with accessible labels on links.
 
-1. Refactor `BaseLayout` to implement the paper container exactly once
-2. Build `PostLayout` using only the rules in this document
+---
 
-If you want, next I can:
-- Translate this doc into **design tokens + CSS variables only**
-- Or help you **audit existing CSS against this spec** and trim it down
-```
+## 9) Implementation Notes
+### Recommended container usage per page
+- **Home:** `container-wide + paper`
+- **Blog index:** `container-wide + paper`
+- **About:** `container (reading) + paper`
+- **Post page:** `container (reading) + paper`
+
+### Themes per page (suggested defaults)
+- Home: `sprinkle-field` or `sprinkle-brownie`
+- About: `blueberry-nebula`
+- Blog index: `galaxy-donut`
+- Post pages: `starry-night` or `galaxy-donut`
+
+---
+
+## 10) Future Extensions (Not required now)
+- Post TOC side rail (desktop only)
+- Tag filtering on blog index
+- Per-post world setting in frontmatter (auto theme per post)
+- Subtle animated stars (very light; avoid distraction)

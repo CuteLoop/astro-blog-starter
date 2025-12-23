@@ -1,10 +1,11 @@
 ---
+import { site } from "../config/site";
 ---
 
-<nav aria-label="Main navigation">
+<nav class="nav" aria-label="Main navigation">
   <ul id="main-menu" class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/blog">Blog</a></li>
+    {site.nav.map((item) => (
+      <li><a href={item.href}>{item.label}</a></li>
+    ))}
   </ul>
 </nav>

@@ -1,18 +1,82 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = "Blog";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <BaseLayout
-  pageTitle={pageTitle}
-  description="Posts about building my Astro blog and learning frontend development."
+  pageTitle="Blog"
+  description="Posts from the content collection."
 >
-  <p>This is where I will post about my journey learning Astro.</p>
+  <p class="meta">Posts from your content collection.</p>
 
-  <h2>Blog Posts</h2>
-  <ul>
-    <li><a href="/posts/post-1/">Post 1</a></li>
-    <li><a href="/posts/post-2/">Post 2</a></li>
-    <li><a href="/posts/post-3/">Post 3</a></li>
-  </ul>
+  {posts.length === 0 ? (
+    <p>No posts yet.</p>
+  ) : (
+    <ul class="post-list">
+      {posts.map((p) => (
+        <li class="post-item">
+          <a class="post-link" href={`/posts/${p.slug}/`}>
+            <div class="post-top">
+              <span class="post-title">{p.data.title}</span>
+              <span class="post-date">{p.data.pubDate.toISOString().slice(0, 10)}</span>
+            </div>
+            {p.data.description && <p class="post-desc">{p.data.description}</p>}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  <style>
+    .post-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0 0;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .post-link {
+      display: block;
+      padding: 0.9rem 1rem;
+      border-radius: 0.85rem;
+      background: rgba(15, 23, 42, 0.04);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      text-decoration: none;
+    }
+
+    .post-link:hover,
+    .post-link:focus-visible {
+      border-color: rgba(96, 165, 250, 0.35);
+    }
+
+    .post-top {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .post-title {
+      font-weight: 750;
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: rgba(15, 23, 42, 0.18);
+      text-underline-offset: 0.18em;
+    }
+
+    .post-date {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    .post-desc {
+      margin: 0.5rem 0 0;
+      color: var(--ink-muted);
+    }
+  </style>
 </BaseLayout>

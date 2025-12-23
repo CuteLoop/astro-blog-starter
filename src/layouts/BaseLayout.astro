@@ -3,7 +3,11 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
-const { pageTitle = "Page", theme = "midnight" } = Astro.props;
+const {
+  pageTitle = "Page",
+  description,
+  theme = "midnight",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -12,16 +16,20 @@ const { pageTitle = "Page", theme = "midnight" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{pageTitle}</title>
+    {description && <meta name="description" content={description} />}
   </head>
+
   <body>
     <Header />
 
-    <main class="paper container">
+    <main class="container paper">
       <h1>{pageTitle}</h1>
       <slot />
     </main>
 
     <Footer />
+
+    <!-- IMPORTANT: serve from /public/scripts/menu.js -->
     <script type="module" src="/scripts/menu.js"></script>
   </body>
 </html>

@@ -8,11 +8,8 @@ const profiles = [
 ---
 
 <footer class="site-footer">
-  
-  <div class="shell footer-inner">
-    <p class="footer-lead">
-      Curious? Here’s where I share code, writing, and works-in-progress:
-    </p>
+  <div class="wrap">
+    <p class="meta">Built with Astro. Customize <code>src/config/site.ts</code> to make it yours.</p>
 
     <ul class="footer-links">
       {profiles.map(({ platform, username }) => (
@@ -20,46 +17,27 @@ const profiles = [
       ))}
     </ul>
 
-    <p class="footer-meta">© {new Date().getFullYear()} Joel</p>
+    <p class="meta">© {new Date().getFullYear()} Cosmic Paper</p>
   </div>
 </footer>
 
 <style>
-  .site-footer {
-    border-top: 1px solid rgba(229, 231, 235, 0.12);
-    color: rgba(255, 255, 255, 0.92); /* lighter footer text */
-    margin-top: 3rem;
-  }
-
-  .footer-inner {
-    width: 100%;
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 1.5rem 1rem;
-  }
-
-  .footer-lead {
-    margin: 0;
-    font-size: 0.95rem;
-    color: inherit;
-  }
-
   .footer-links {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
     list-style: none;
     padding: 0;
-    margin: 0.9rem 0 1.1rem;
+    margin: 0.75rem 0 1.25rem;
   }
 
-  .footer-links a {
-    color: inherit;
-  }
-
-  .footer-meta {
-    margin: 0;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.75); /* slightly lighter than before */
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.95em;
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.4rem;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.92);
   }
 </style>
