@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { slugifyTag } from "../../utils/slugifyTag";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+
+  const map = new Map<string, { slug: string; label: string }>();
+
+  for (const p of posts) {
+    for (const raw of p.data.tags ?? []) {
+      const slug = slugifyTag(raw);
+      if (!map.has(slug)) map.set(slug, { slug, label: raw });
+    }
+  }
+
+  return Array.from(map.values()).map(({ slug, label }) => ({
+    params: { tag: slug },
+    props: { label },
+  }));
+}
+
+const { tag } = Astro.params;
+const { label } = Astro.props;
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .filter((p) => (p.data.tags ?? []).some((t) => slugifyTag(t) === tag))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout pageTitle={`Tag: ${label ?? tag}`} description={`Posts tagged ${label ?? tag}.`}>
+  <p class="meta">{posts.length} post(s).</p>
+
+  <ul class="post-list">
+    {posts.map((p) => (
+      <li>
+        <a href={`/posts/${p.slug}/`}>{p.data.title}</a>
+        <span class="meta"> — {p.data.pubDate.toISOString().slice(0, 10)}</span>
+      </li>
+    ))}
+  </ul>
+
+  <p><a href="/tags">← Back to all tags</a></p>
+
+  <style>
+    .post-list {
+      margin: 1rem 0 0;
+      padding-left: 1.25rem;
+    }
+    .post-list li {
+      margin: 0.6rem 0;
+    }
+  </style>
+</BaseLayout>

@@ -1,33 +1,35 @@
 ---
 import "../styles/global.css";
+import { slugifyTag } from "../utils/slugify";
 
 const { entry } = Astro.props;
-const { title, pubDate, description, author, image } = entry.data;
+const { title, pubDate, description, author, image, tags } = entry.data;
 
-const dateString = pubDate?.toISOString?.().slice(0, 10) ?? "";
+const dateString = pubDate.toISOString().slice(0, 10);
 ---
 
 <main class="container paper">
   <header class="post-header">
-    {(dateString || author) && (
-      <p class="meta">
-        {dateString}{author ? ` • ${author}` : ""}
-      </p>
-    )}
-
+    <p class="meta">{dateString}{author ? ` • ${author}` : ""}</p>
     <h1>{title}</h1>
 
-    {description && (
-      <p class="meta">
-        <em>{description}</em>
-      </p>
+    {description && <p class="meta"><em>{description}</em></p>}
+
+    {(tags?.length ?? 0) > 0 && (
+      <ul class="tag-list" aria-label="Tags">
+        {tags.map((t) => (
+          <li class="tag">
+            <a href={`/tags/${slugifyTag(t)}/`}>{t}</a>
+          </li>
+        ))}
+      </ul>
     )}
 
     {image?.url && (
       <img
         class="post-hero"
         src={image.url}
-        alt={image.alt ?? ""}
+        alt={image.alt}
         width="900"
         loading="lazy"
       />
@@ -38,17 +40,3 @@ const dateString = pubDate?.toISOString?.().slice(0, 10) ?? "";
     <slot />
   </article>
 </main>
-
-<style>
-  .post-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .post-hero {
-    margin-top: 1rem;
-    border-radius: 0.85rem;
-    max-width: 100%;
-    height: auto;
-    border: 1px solid rgba(15, 23, 42, 0.12);
-  }
-</style>

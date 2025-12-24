@@ -4,6 +4,7 @@ description: "Getting the Astro blog wired up."
 pubDate: 2025-12-23
 author: "Joel"
 theme: "galaxy-donut"
+tags: ["Astro", "Build Log", "Notes"]
 ---
 
 Hello from space.

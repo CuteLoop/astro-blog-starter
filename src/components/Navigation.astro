@@ -1,10 +1,19 @@
+
+
 ---
-import { site } from "../config/site";
+const items =
+  Astro.props.items ??
+  [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/blog", label: "Blog" },
+    { href: "/tags", label: "Tags" },
+  ];
 ---
 
 <nav class="nav" aria-label="Main navigation">
   <ul id="main-menu" class="nav-links">
-    {site.nav.map((item) => (
+    {items.map((item) => (
       <li><a href={item.href}>{item.label}</a></li>
     ))}
   </ul>

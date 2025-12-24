@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { slugifyTag } from "../../utils/slugifyTag";
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+
+const counts = new Map<string, number>();
+const labels = new Map<string, string>(); // slug -> original label
+
+for (const p of posts) {
+  for (const raw of p.data.tags ?? []) {
+    const slug = slugifyTag(raw);
+    labels.set(slug, raw);
+    counts.set(slug, (counts.get(slug) ?? 0) + 1);
+  }
+}
+
+const tags = Array.from(counts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+---
+
+<BaseLayout pageTitle="Tags" description="Browse posts by tag.">
+  {tags.length === 0 ? (
+    <p>No tags yet.</p>
+  ) : (
+    <ul class="tag-cloud">
+      {tags.map(([slug, n]) => (
+        <li>
+          <a href={`/tags/${slug}/`}>
+            {labels.get(slug) ?? slug} <span class="meta">({n})</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  <style>
+    .tag-cloud {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 0.5rem;
+      margin: 1rem 0 0;
+    }
+    .tag-cloud a {
+      text-decoration: none;
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(15, 23, 42, 0.04);
+    }
+    .tag-cloud a:hover,
+    .tag-cloud a:focus-visible {
+      border-color: rgba(96, 165, 250, 0.35);
+      outline: none;
+    }
+  </style>
+</BaseLayout>
