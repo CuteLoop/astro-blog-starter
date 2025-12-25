@@ -7,7 +7,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   description="A minimal blog starter with a cosmic-paper theme."
 >
   <p class="meta">A simple starter: content collections + clean layouts + a calm reading surface.</p>
-
+  <h1>Hello AstroWorld</h1>
+  <h2>Getting started</h2>
+  <p set:html={`\\[
+  \\begin{aligned}
+  \\nabla\\cdot\\mathbf{E} &= \\frac{\\rho}{\\varepsilon_0},\\\\
+  \\nabla\\cdot\\mathbf{B} &= 0,\\\\
+  \\nabla\\times\\mathbf{E} &= -\\frac{\\partial\\mathbf{B}}{\\partial t},\\\\
+  \\nabla\\times\\mathbf{B} &= \\mu_0\\mathbf{J} + \\mu_0\\varepsilon_0\\frac{\\partial\\mathbf{E}}{\\partial t}.
+  \\end{aligned}
+  \\]`}></p>
   <h2>What this is</h2>
   <p>
     A lightweight Astro blog you can fork and customize: pages, posts, and a clean design system.

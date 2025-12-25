@@ -7,6 +7,7 @@ const {
   pageTitle = "Page",
   description,
   theme = "midnight",
+  showTitle = true, // NEW
 } = Astro.props;
 ---
 
@@ -17,19 +18,35 @@ const {
     <meta name="viewport" content="width=device-width" />
     <title>{pageTitle}</title>
     {description && <meta name="description" content={description} />}
+
+    <!-- MathJax (global) -->
+    <script is:inline>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          processEscapes: true,
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+        },
+      };
+    </script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
   </head>
 
   <body>
     <Header />
 
     <main class="container paper">
-      <h1>{pageTitle}</h1>
+      {showTitle && <h1>{pageTitle}</h1>}
       <slot />
     </main>
 
     <Footer />
-
-    <!-- IMPORTANT: serve from /public/scripts/menu.js -->
     <script type="module" src="/scripts/menu.js"></script>
   </body>
 </html>

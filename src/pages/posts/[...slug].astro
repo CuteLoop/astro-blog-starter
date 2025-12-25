@@ -1,8 +1,5 @@
 ---
-import { getCollection, getEntryBySlug } from "astro:content";
-import { render } from "astro:content";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import { getCollection, getEntryBySlug, render } from "astro:content";
 import PostLayout from "../../layouts/PostLayout.astro";
 
 export async function getStaticPaths() {
@@ -14,34 +11,12 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 
-// Pull the entry at runtime for this route
 const entry = await getEntryBySlug("blog", slug);
-
-// Safety: if entry missing, show a 404
-if (!entry) {
-  return new Response("Not found", { status: 404 });
-}
+if (!entry) return new Response("Not found", { status: 404 });
 
 const { Content } = await render(entry);
-const theme = entry.data.theme ?? "starry-night";
 ---
 
-<!doctype html>
-<html lang="en" data-theme={theme}>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{entry.data.title}</title>
-  </head>
-
-  <body>
-    <Header pageTitle={entry.data.title} />
-
-    <PostLayout entry={entry}>
-      <Content />
-    </PostLayout>
-
-    <Footer />
-    <script type="module" src="/scripts/menu.js"></script>
-  </body>
-</html>
+<PostLayout entry={entry}>
+  <Content />
+</PostLayout>

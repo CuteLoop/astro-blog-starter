@@ -480,3 +480,10 @@ html[data-theme="starry-night"] {
   border: 0;
   border-radius: 0.85rem;
 }
+
+/* MathJax readability on paper */
+mjx-container[jax="CHTML"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}

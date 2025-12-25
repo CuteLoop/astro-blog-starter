@@ -1,17 +1,20 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "./BaseLayout.astro";
 import { slugifyTag } from "../utils/slugifyTag";
 
 const { entry } = Astro.props;
-const { title, pubDate, description, author, image, tags } = entry.data;
+const { title, pubDate, description, author, image, tags, theme } = entry.data;
 
 const dateString = pubDate.toISOString().slice(0, 10);
+const pageTheme = theme ?? "starry-night";
 ---
 
-<main class="container paper">
+<BaseLayout pageTitle={title} description={description} theme={pageTheme}>
   <header class="post-header">
     <p class="meta">{dateString}{author ? ` • ${author}` : ""}</p>
-    <h1>{title}</h1>
+
+    {/* If you prefer *only one* H1 per page, switch this to <h2> */}
+    {/* <h2 class="post-title">{title}</h2> */}
 
     {description && <p class="meta"><em>{description}</em></p>}
 
@@ -40,4 +43,13 @@ const dateString = pubDate.toISOString().slice(0, 10);
   <article class="prose">
     <slot />
   </article>
-</main>
+
+  <style>
+    .post-header {
+      margin-bottom: 1.25rem;
+    }
+    .post-title {
+      margin: 0.25rem 0 0.5rem;
+    }
+  </style>
+</BaseLayout>
