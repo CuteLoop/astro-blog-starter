@@ -1,43 +1,156 @@
-# Astro Starter Kit: Minimal
 
-```sh
-npm create astro@latest -- --template minimal
+# Astro LaTeX Blog Starter
+
+A minimal **Astro** blog starter with **LaTeX math support** via MathJax, designed for mathematicians, scientists, and technical writers.
+
+Live demo (Netlify):  
+👉 https://astro-latex.netlify.app/
+
+---
+
+## Features
+
+- Astro + Content Collections
+- Markdown posts with LaTeX math
+  - Inline math: `$...$`
+  - Display math: `$$...$$`
+- Clean, readable layout (cosmic paper theme)
+- Tag system
+- Ready for Netlify deployment
+- No framework lock-in, no client-side JS required for content
+
+---
+
+## Quick start
+
+```bash
+git clone <this-repo-url>
+cd astro-latex-blog
+npm install
+npm run dev
+````
+
+Open the local URL printed by Astro (usually `http://localhost:4321`).
+
+---
+
+## Writing posts
+
+Create Markdown files in:
+
+```
+src/content/blog/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Example:
 
-## 🚀 Project Structure
+```md
+---
+title: "My First Math Post"
+description: "Testing LaTeX support."
+pubDate: 2025-12-25
+author: "Your Name"
+tags: ["Math", "Notes"]
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+Inline math: $a^2 + b^2 = c^2$.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+Display math:
+
+$$
+\int_0^1 x^n \, dx = \frac{1}{n+1}.
+$$
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### LaTeX guidelines
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+* Use `$...$` for inline math
+* Use `$$...$$` for display math
+* Avoid `\[...\]` inside `.astro` templates
+* MathJax is loaded globally via the base layout
 
-Any static assets, like images, can be placed in the `public/` directory.
+---
 
-## 🧞 Commands
+## Deployment (Netlify)
 
-All commands are run from the root of the project, from a terminal:
+This repo is ready for **one-click Netlify deployment**.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+**Build settings:**
 
-## 👀 Want to learn more?
+* Build command: `npm run build`
+* Publish directory: `dist`
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Optional `netlify.toml`:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+```
+
+---
+
+## Tutorial post
+
+A full walkthrough explaining how this blog is built and deployed in ~15–20 minutes:
+
+📖 **Launch a LaTeX Astro Blog in 15–20 Minutes**
+[https://astro-latex.netlify.app/blog/launch-a-latex-astro-blog/](https://astro-latex.netlify.app/blog/launch-a-latex-astro-blog/)
+
+(This post is part of the demo site and uses this repository.)
+
+---
+
+## Intended audience
+
+* Mathematicians
+* Physicists
+* Applied scientists
+* Graduate students
+* Technical bloggers who want LaTeX without heavy tooling
+
+---
+
+## License
+
+MIT
+
+---
+
+## Status
+
+This is a **starter template**, not a CMS.
+Planned future extensions (not included yet):
+
+* theorem / proof blocks
+* TikZ → SVG pipeline
+* LaTeX macro tooling
+* CI-based figure rendering
+
+Contributions and forks are welcome.
+
+```
+
+---
+
+## Suggested GitHub repo settings
+
+When you publish the repo, I recommend:
+
+**Description**  
+> Minimal Astro blog with LaTeX math support (MathJax). Ideal for math & science writing.
+
+**Topics**
+```
+
+astro
+latex
+mathjax
+markdown
+blog
+static-site
+netlify
+
