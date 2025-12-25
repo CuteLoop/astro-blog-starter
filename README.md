@@ -69,8 +69,10 @@ $$
 
 - Use `$$...$$` for display math  
   Example:
-
-
+  ``` $$
+  \int_0^1 x^n , dx = \frac{1}{n+1}
+$$```
+renders into 
 $$
 \int_0^1 x^n , dx = \frac{1}{n+1}
 $$
@@ -100,8 +102,6 @@ Use `set:html` and escape backslashes:
 
 * MathJax is loaded globally via the base layout, so no per-page setup is required.
 
-```
-```
 
 ---
 
