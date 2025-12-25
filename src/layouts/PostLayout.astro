@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { slugifyTag } from "../utils/slugify";
+import { slugifyTag } from "../utils/slugifyTag";
 
 const { entry } = Astro.props;
 const { title, pubDate, description, author, image, tags } = entry.data;
@@ -30,7 +30,8 @@ const dateString = pubDate.toISOString().slice(0, 10);
         class="post-hero"
         src={image.url}
         alt={image.alt}
-        width="900"
+        width="1200"
+        height="630"
         loading="lazy"
       />
     )}

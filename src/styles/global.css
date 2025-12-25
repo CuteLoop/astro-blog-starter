@@ -427,3 +427,56 @@ html[data-theme="starry-night"] {
 .tag a:focus-visible {
   border-color: rgba(96, 165, 250, 0.35);
 }
+
+/* -----------------------------
+   Media containment (posts)
+------------------------------ */
+
+/* Prevent any element from causing sideways scroll */
+.paper,
+.container,
+.prose {
+  overflow-wrap: anywhere;
+}
+
+.prose {
+  overflow-x: hidden; /* extra safety for wide content */
+}
+
+/* Images inside post content (Markdown) */
+.prose img,
+.prose video,
+.prose iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Hero image (PostLayout) */
+.post-hero {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+
+  margin-top: 1rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+
+  /* Helps avoid “mystery overflow” in some layouts */
+  object-fit: cover;
+}
+
+/* Optional: if you want a consistent hero “window” */
+@media (min-width: 636px) {
+  .post-hero {
+    max-height: 420px; /* tune to taste */
+  }
+}
+
+/* Optional: iframes (YouTube, etc.) behave */
+.prose iframe {
+  width: 100%;
+  border: 0;
+  border-radius: 0.85rem;
+}
