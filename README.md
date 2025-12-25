@@ -69,9 +69,7 @@ $$
 
 - Use `$$...$$` for display math  
   Example:
-  $$
-\int_0^1 x^n , dx = \frac{1}{n+1}
-$$
+  $\int_0^1 x^n , dx = \frac{1}{n+1}$
   ```
   \int_0^1 x^n , dx = \frac{1}{n+1}
   
