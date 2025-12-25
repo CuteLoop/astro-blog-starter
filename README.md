@@ -68,7 +68,10 @@ $$
 * Use `$$...$$` for display math
 * Avoid `\[...\]` inside `.astro` templates
 * MathJax is loaded globally via the base layout
-
+  
+Common error.
+moderately use {} braces as Astro tries to render them as javasciript and could bring errors.
+e^{i\pi} $e^{i\pi}$ as sometimes it will 
 ---
 
 ## Deployment (Netlify)
