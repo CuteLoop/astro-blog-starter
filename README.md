@@ -61,7 +61,7 @@ $$
 \int_0^1 x^n \, dx = \frac{1}{n+1}.
 $$
 ```
-```md
+
 ### LaTeX guidelines
 
 - Use `$...$` for inline math  
@@ -69,13 +69,13 @@ $$
 
 - Use `$$...$$` for display math  
   Example:
-```
+
 
 $$
 \int_0^1 x^n , dx = \frac{1}{n+1}
 $$
 
-```
+
 
 - Prefer writing math in **Markdown (`.md`) files**  
 Markdown content is safely passed to MathJax and avoids Astro parsing issues.
