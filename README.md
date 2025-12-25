@@ -70,7 +70,9 @@ $$
 * MathJax is loaded globally via the base layout
 * Common error.
     moderately use {} braces as Astro tries to render them as javasciript and could bring errors.
-    e^{i\pi} $e^{i\pi}$ as sometimes it will 
+    for example will error e^{i\pi} if not in a .md file
+* Fix:  ``` <p set:html={`\\[ x^2 + e^{\\pi} + 1 = 0 \\]`}></p>
+ ```
 ---
 
 ## Deployment (Netlify)
