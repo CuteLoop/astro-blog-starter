@@ -61,18 +61,48 @@ $$
 \int_0^1 x^n \, dx = \frac{1}{n+1}.
 $$
 ```
-
+```md
 ### LaTeX guidelines
 
-* Use `$...$` for inline math
-* Use `$$...$$` for display math
-* Avoid `\[...\]` inside `.astro` templates
-* MathJax is loaded globally via the base layout
-* Common error.
-    moderately use {} braces as Astro tries to render them as javasciript and could bring errors.
-    for example will error e^{i\pi} if not in a .md file
-* Fix:  ``` <p set:html={`\\[ x^2 + e^{\\pi} + 1 = 0 \\]`}></p>
- ```
+- Use `$...$` for inline math  
+  Example: `$a^2 + b^2 = c^2$`
+
+- Use `$$...$$` for display math  
+  Example:
+```
+
+$$
+\int_0^1 x^n , dx = \frac{1}{n+1}
+$$
+
+```
+
+- Prefer writing math in **Markdown (`.md`) files**  
+Markdown content is safely passed to MathJax and avoids Astro parsing issues.
+
+- Avoid `\[...\]` and `\(...\)` inside `.astro` templates  
+Astro interprets `{}` as JavaScript expressions, which can break LaTeX.
+
+- **Common error**  
+Use braces `{}` sparingly in `.astro` files. Astro may try to evaluate them as JavaScript.  
+For example, the following may cause an error if written directly in an `.astro` file:
+```
+
+e^{i\pi}
+
+````
+
+- **Fix (when LaTeX is required in `.astro`)**  
+Use `set:html` and escape backslashes:
+```astro
+<p set:html={`\\[ x^2 + e^{\\pi} + 1 = 0 \\]`}></p>
+````
+
+* MathJax is loaded globally via the base layout, so no per-page setup is required.
+
+```
+```
+
 ---
 
 ## Deployment (Netlify)
