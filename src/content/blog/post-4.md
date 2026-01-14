@@ -1,6 +1,4 @@
 
----
-title: "Launch a LaTeX Astro Blog in ~15–20 Minutes (Astro + Netlify)"
 description: "Clone a starter, deploy to Netlify, and write posts with $...$ and $$...$$ math in under 20 minutes."
 pubDate: 2025-12-01
 author: "Joel"
