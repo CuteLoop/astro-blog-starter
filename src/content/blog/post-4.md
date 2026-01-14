@@ -1,16 +1,18 @@
 
+---
+title: "Launch a LaTeX Astro Blog in ~15–20 Minutes (Astro + Netlify)"
 description: "Clone a starter, deploy to Netlify, and write posts with $...$ and $$...$$ math in under 20 minutes."
 pubDate: 2025-12-01
 author: "Joel"
 theme: "galaxy-donut"
 tags: ["Astro", "Math", "LaTeX", "Netlify", "Build Log"]
 
+---
 
 This is a practical, start-to-finish workflow to get a clean Astro blog online with LaTeX math rendering.
 
 The aim is simple: **clone → deploy → write**. If you want to build from scratch, I include a short “from-scratch” path at the end.
 
----
 
 ## What you’ll have at the end
 
